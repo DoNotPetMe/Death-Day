@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- Scripted visual-verification scene. Open headlessly with a virtual
+     time budget and screenshot it: guns fire, a grenade detonates, a
+     subject burns, an automaton is electrocuted. Not part of the game. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DD visual test</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div id="topbar">
+    <div id="logo">DEATH<span>DAY</span></div>
+    <div id="topbtns">
+      <button id="btn-pause" class="tb">⏸</button><button id="btn-slow" class="tb">🐌</button>
+      <button id="btn-grav" class="tb on">⬇</button><button id="btn-blood" class="tb">🧹</button>
+      <button id="btn-clear" class="tb warn">🗑</button><button id="btn-sound" class="tb on">🔊</button>
+      <button id="btn-help" class="tb">?</button>
+    </div>
+    <div id="status"></div>
+  </div>
+  <div id="sidebar"><div id="cats"></div><div id="items"></div></div>
+  <canvas id="game"></canvas>
+  <div id="footer"><span id="hint"></span></div>
+  <div id="help" class="hidden"><div id="helpbox"><button id="btn-closehelp">x</button></div></div>
+
+  <script src="../js/audio.js"></script>
+  <script src="../js/physics.js"></script>
+  <script src="../js/effects.js"></script>
+  <script src="../js/ragdoll.js"></script>
+  <script src="../js/items.js"></script>
+  <script src="../js/game.js"></script>
+  <script src="../js/ui.js"></script>
+  <script>
+    DD.Game.init();
+    DD.UI.init();
+    DD.Audio.toggleMute();
+    const G = DD.Game;
+    const reg = (id) => DD.Items.registry.find((r) => r.id === id);
+    const GY = 1280;
+
+    // clear the welcome scene for a deterministic stage
+    G.clearAll();
+    G.cam.x = 1300; G.cam.y = 1000; G.cam.zoom = 0.8;
+
+    // 1. firing squad: rifle locked aiming at a subject
+    const victim = DD.Ragdoll.make(G.world, 980, GY - 80, 'subject');
+    const rifle = reg('rifle').make(G.world, 700, GY - 120);
+    rifle.data.grip.pin(); rifle.data.muzzle.pin();   // hold steady, aimed level
+
+    // 2. grenade beside a husk on the right platform
+    const husk = DD.Ragdoll.make(G.world, 2050, 880 - 80, 'husk');
+    const nade = reg('grenade').make(G.world, 2010, 880 - 16);
+    nade.onActivate(nade);
+
+    // 3. burning subject mid-field
+    const burner = DD.Ragdoll.make(G.world, 1550, GY - 80, 'subject');
+    for (const p of burner.particles) p.burn = 6;
+
+    // 4. electrocuted automaton on the left platform
+    const bot = DD.Ragdoll.make(G.world, 450, 1010 - 80, 'automaton');
+    DD.Ragdoll.electrocute(bot, 30);
+
+    // 5. props: crates + barrel
+    reg('crate').make(G.world, 1300, GY - 40);
+    reg('crate').make(G.world, 1300, GY - 110);
+    reg('barrel').make(G.world, 1420, GY - 40);
+
+    // fire the rifle a few times over the first seconds
+    let shots = 0;
+    const iv = setInterval(() => {
+      rifle.data.cd = 0;
+      rifle.onActivate(rifle);
+      if (++shots >= 4) clearInterval(iv);
+    }, 700);
+  </script>
+</body>
+</html>

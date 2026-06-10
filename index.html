@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEATH DAY — ragdoll physics sandbox</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="topbar">
+    <div id="logo">DEATH<span>DAY</span></div>
+    <div id="topbtns">
+      <button id="btn-pause"  class="tb" title="Pause / resume  [Space]">⏸ pause</button>
+      <button id="btn-slow"   class="tb" title="Slow motion  [T]">🐌 slow-mo</button>
+      <button id="btn-grav"   class="tb on" title="Toggle gravity  [G]">⬇ gravity</button>
+      <button id="btn-blood"  class="tb" title="Wash away blood stains  [C]">🧹 wash</button>
+      <button id="btn-clear"  class="tb warn" title="Remove every spawned object">🗑 clear all</button>
+      <button id="btn-sound"  class="tb on" title="Toggle sound  [M]">🔊 sound</button>
+      <button id="btn-help"   class="tb" title="Controls  [H]">? help</button>
+    </div>
+    <div id="status"></div>
+  </div>
+
+  <div id="sidebar">
+    <div id="cats"></div>
+    <div id="items"></div>
+  </div>
+
+  <canvas id="game"></canvas>
+
+  <div id="footer">
+    <span id="hint"></span>
+  </div>
+
+  <div id="help">
+    <div id="helpbox">
+      <h1>DEATH DAY <small>· containment facility sandbox</small></h1>
+      <table>
+        <tr><td>Left mouse</td><td>grab &amp; drag objects · place selected item</td></tr>
+        <tr><td>Right mouse / F</td><td><b>activate</b> hovered object — fire gun, prime grenade, use serum… (hold for automatics)</td></tr>
+        <tr><td>Right-drag empty space</td><td>pan the camera</td></tr>
+        <tr><td>Scroll / + −</td><td>zoom</td></tr>
+        <tr><td>W A S D / arrows</td><td>pan the camera</td></tr>
+        <tr><td>X or Delete</td><td>delete hovered object</td></tr>
+        <tr><td>P</td><td>pin / unpin hovered point in space</td></tr>
+        <tr><td>Space</td><td>pause simulation</td></tr>
+        <tr><td>T</td><td>slow motion</td></tr>
+        <tr><td>G</td><td>toggle gravity</td></tr>
+        <tr><td>C</td><td>wash away stains</td></tr>
+        <tr><td>Esc</td><td>deselect item / close menus</td></tr>
+      </table>
+      <p class="note">A purely fictional physics toy. Everything in the facility is expendable.</p>
+      <button id="btn-closehelp">begin testing</button>
+    </div>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/ragdoll.js"></script>
+  <script src="js/items.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
