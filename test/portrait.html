@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Close-up character test: idle trio standing (breathing/blinking),
+     one corpse, one amputee. Screenshot at high zoom to judge the art. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DD portrait test</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div id="topbar">
+    <div id="logo">DEATH<span>DAY</span></div>
+    <div id="topbtns"></div>
+    <div id="status"></div>
+  </div>
+  <div id="sidebar"><div id="cats"></div><div id="items"></div></div>
+  <canvas id="game"></canvas>
+  <div id="footer"><span id="hint"></span></div>
+  <div id="help" class="hidden"><div id="helpbox"><button id="btn-closehelp">x</button></div></div>
+
+  <script src="../js/audio.js"></script>
+  <script src="../js/physics.js"></script>
+  <script src="../js/effects.js"></script>
+  <script src="../js/ragdoll.js"></script>
+  <script src="../js/items.js"></script>
+  <script src="../js/game.js"></script>
+  <script src="../js/ui.js"></script>
+  <script>
+    DD.Game.init();
+    DD.UI.init();
+    DD.Audio.toggleMute();
+    const G = DD.Game;
+    const GY = 1280;
+    G.clearAll();
+    G.cam.x = 1020; G.cam.y = 1190; G.cam.zoom = 2.6;
+
+    // standing trio — keep clear of the centre block (x 1180..1460)
+    DD.Ragdoll.make(G.world, 920, GY - 80, 'subject');
+    DD.Ragdoll.make(G.world, 1030, GY - 80, 'husk');
+    DD.Ragdoll.make(G.world, 1140, GY - 80, 'automaton');
+
+    // a corpse (pale, X eyes) on top of the centre block (top y=1160)
+    const corpse = DD.Ragdoll.make(G.world, 1330, 1160 - 80, 'subject');
+    DD.Ragdoll.kill(corpse, false);
+    corpse.data.deadT = 10;
+
+    // an amputee, in pain, missing a forearm
+    const amp = DD.Ragdoll.make(G.world, 780, GY - 80, 'subject');
+    DD.Ragdoll.sever(amp, 'forearmL');
+  </script>
+</body>
+</html>

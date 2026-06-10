@@ -219,7 +219,7 @@
 
     solveConstraints() {
       for (const b of this.bodies) for (const c of b.constraints) {
-        if (!c.broken) c.solve();
+        if (!c.broken && !c.disabled) c.solve();
       }
     }
 

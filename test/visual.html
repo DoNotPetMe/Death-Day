@@ -43,6 +43,11 @@
     G.clearAll();
     G.cam.x = 1300; G.cam.y = 1000; G.cam.zoom = 0.8;
 
+    // 0. idle trio — must be standing upright on their own at screenshot time
+    DD.Ragdoll.make(G.world, 480, GY - 80, 'subject');
+    DD.Ragdoll.make(G.world, 560, GY - 80, 'husk');
+    DD.Ragdoll.make(G.world, 640, GY - 80, 'automaton');
+
     // 1. firing squad: rifle locked aiming at a subject
     const victim = DD.Ragdoll.make(G.world, 980, GY - 80, 'subject');
     const rifle = reg('rifle').make(G.world, 700, GY - 120);
@@ -54,17 +59,17 @@
     nade.onActivate(nade);
 
     // 3. burning subject mid-field
-    const burner = DD.Ragdoll.make(G.world, 1550, GY - 80, 'subject');
+    const burner = DD.Ragdoll.make(G.world, 1540, GY - 80, 'subject');
     for (const p of burner.particles) p.burn = 6;
 
     // 4. electrocuted automaton on the left platform
     const bot = DD.Ragdoll.make(G.world, 450, 1010 - 80, 'automaton');
     DD.Ragdoll.electrocute(bot, 30);
 
-    // 5. props: crates + barrel
-    reg('crate').make(G.world, 1300, GY - 40);
-    reg('crate').make(G.world, 1300, GY - 110);
-    reg('barrel').make(G.world, 1420, GY - 40);
+    // 5. props: crates + barrel — clear of the centre block (1180..1460)
+    reg('crate').make(G.world, 1660, GY - 40);
+    reg('crate').make(G.world, 1660, GY - 110);
+    reg('barrel').make(G.world, 1780, GY - 40);
 
     // fire the rifle a few times over the first seconds
     let shots = 0;

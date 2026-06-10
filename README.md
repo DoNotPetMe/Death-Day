@@ -14,6 +14,8 @@ no server or install required.
 
 ## What's in the chamber
 
+![Beings](docs/screenshot-beings.png)
+
 | Category | Items |
 |---|---|
 | **Beings** | Subject (human analogue), Husk (necrotic — shrugs off bullets, only decapitation stops it), Automaton (bleeds oil, sparks, overloads under electricity) |
@@ -35,6 +37,16 @@ no server or install required.
 - **Electricity** — convulsions, arcing, and eventually a stopped heart.
 - **Pain & death** — living subjects flail and wince; the dead go pale with
   X-ed eyes. The serum can bring them back.
+
+## Alive, not just articulated
+
+Living beings *stand* where you place them — balancing on skeletal "muscle"
+constraints that switch off the instant they're stunned, electrocuted, or
+dead, collapsing them into a full ragdoll. They breathe, blink, sway, shift
+their weight and fidget; the Husk stands with a hunch, the Automaton at
+rigid attention with a glowing core. Hard hits knock them off their feet
+and they stay down — but prop a fallen survivor back upright and they will
+find their footing again.
 
 ## Controls
 
