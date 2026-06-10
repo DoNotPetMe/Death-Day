@@ -1,6 +1,6 @@
 # DEATH DAY
 
-A 2D ragdoll physics sandbox in the spirit of *People Playground*, with its own
+A 2D ragdoll physics sandbox, with its own
 identity: you run **Testing Chamber 04** of a containment facility, and
 everything in it is expendable. Built entirely from scratch in vanilla
 JavaScript — including the physics engine. **Zero dependencies, no build step.**
